@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.laptop.finalproject.FavoritesFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Dudd, It's Your Favorits!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:forceHasOverlappingRendering="false"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF0DD3" />
+
+</LinearLayout>

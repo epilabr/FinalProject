@@ -5,10 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 
+/*=========this class is for the pager adapter==================*/
+class MyFragmentPagerAdapter extends FragmentPagerAdapter{
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter{
-
-    protected MyFragmentPagerAdapter(FragmentManager fm) {
+    MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
