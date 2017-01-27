@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(new MyFragmentPagerAdapter(    //sets the adapter for ViewPager
                 getSupportFragmentManager()));
 
+
+
     }
 
     @Override
