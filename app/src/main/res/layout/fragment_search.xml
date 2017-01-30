@@ -1,15 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.laptop.finalproject.SearchFragment"
-    android:background="#ff00ddff">
-
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#ff00ddff">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -23,23 +17,24 @@
                 android:ems="10"
                 android:id="@+id/search_text"
                 android:layout_weight="0.27"
-                android:hint="What would you like to search?"
+                android:hint="@string/search_text"
                 android:focusable="true"
                 android:textSize="15sp" />
 
             <Button
-                android:text="Find It!"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/search_button"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:text="@string/search_button" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp">
+            android:elevation="0dp"
+            tools:ignore="UnusedAttribute">
 
             <SeekBar
                 android:layout_width="wrap_content"
@@ -52,22 +47,24 @@
                 android:max="2000"
                 android:progress="50" />
 
-
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:id="@+id/search_check_Box"
-                android:layout_weight="0.06" />
+                android:layout_weight="0.06"
+                android:elevation="0dp"
+                tools:ignore="UnusedAttribute" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/distance_tv"
-            android:hint="To search near places use the seekbar and checkbox" />
+            android:hint="@string/distance_tv" />
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:id="@+id/search_fragment_list" />
     </LinearLayout>
-</FrameLayout>
+

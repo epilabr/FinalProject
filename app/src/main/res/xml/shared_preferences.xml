@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="inline_preferences">
+
+        <CheckBoxPreference
+            android:key="checkbox_preference1"
+            android:title="Miles or kilometers"
+            android:summary="please choose" />
+        <EditTextPreference
+            android:key="edittext_preference"
+            android:title="Delete all faorites"
+            android:summary="summary_edittext_preference"
+            android:dialogTitle="would you like to delete?" />
+        <CheckBoxPreference
+            android:key="checkbox_preference"
+            android:title="title_checkbox_preference"
+            android:summary="summary_checkbox_preference" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

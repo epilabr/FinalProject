@@ -13,7 +13,7 @@ class MyFragmentPagerAdapter extends FragmentPagerAdapter{
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int position) { //receives position and returns the corresponding fragment
         if (position == 0) {
             return new SearchFragment();
         } else

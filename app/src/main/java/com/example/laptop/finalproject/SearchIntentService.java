@@ -12,67 +12,40 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/*======this service preforms in it's one thread the search action ===========*/
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions and extra parameters.
- */
 public class SearchIntentService extends IntentService {
 
-    String searchText;
-    String ifChecked;
-    String searchRadius;
-    String units;
-
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    public static final String ACTION_FOO = "com.example.laptop.finalproject.action.FOO";
-    public static final String ACTION_BAZ = "com.example.laptop.finalproject.action.BAZ";
-
-    // TODO: Rename parameters
-    public static final String EXTRA_PARAM1 = "com.example.laptop.finalproject.extra.PARAM1";
-    public static final String EXTRA_PARAM2 = "com.example.laptop.finalproject.extra.PARAM2";
+    String searchText;  // the place we want to search
+    String ifChecked;   //if the user chose to use proximity search
+    String searchRadius;  //how close to user location to search
+    String units;      // should we use kilometers or miles
 
     public SearchIntentService() {
         super("SearchIntentService");
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
+    protected void onHandleIntent(Intent intent) {  //the hard working thread that does most of the work
+        if (intent != null) {     //receives the intent with all the extras
             searchText = intent.getStringExtra("searchText");
             ifChecked = intent.getStringExtra("ifChecked");
             searchRadius = intent.getStringExtra("searchRadius");
             units = intent.getStringExtra("units");
 
-            String json = downloadJson(searchText.replaceAll(" ", "%20"));
-            Log.d("text", json);
-            Intent broadcastMessage = new Intent("finalProject.FINISHED");
-            broadcastMessage.putExtra("json", json);
+            Intent broadcastMessage0 = new Intent("finalProject.STARTED"); //sends the appropriate broadcast message
+            LocalBroadcastManager.getInstance(SearchIntentService.this).sendBroadcast(broadcastMessage0);
+
+            String json = downloadJson(searchText.replaceAll(" ", "%20")); //calls for downloading the json
+            Log.d("jason trace", json);  //logs the json for debug purposes only
+            Intent broadcastMessage = new Intent("finalProject.FINISHED");  //sends the appropriate broadcast message
+            broadcastMessage.putExtra("json", json);  //sends the json to the SearchFragment with putExtra(intent) and the "finished" announcement
             LocalBroadcastManager.getInstance(SearchIntentService.this).sendBroadcast(broadcastMessage);
         }
     }
 
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-    }
 
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-    }
-
-    private String downloadJson(String searchkey) {
-
+    private String downloadJson(String searchKey) {  //preforms the api call and downloads the response json
 
         BufferedReader input = null;
         HttpURLConnection connection = null;
@@ -80,8 +53,8 @@ public class SearchIntentService extends IntentService {
 
         try {
             if (ifChecked.equals("1")) {
-
-                URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + "lat" + "," + "lng" + "&radius=" + searchRadius + "&name=" + searchkey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
+                //search by keywords and search radius that the user chose
+                URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + "lat" + "," + "lng" + "&radius=" + searchRadius + "&name=" + searchKey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
 
                 connection = (HttpURLConnection) url.openConnection();
                 input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -90,8 +63,8 @@ public class SearchIntentService extends IntentService {
                     response.append(line + "\n");
                 }
             } else {
-
-                URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchkey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
+                //search by keywords only
+                URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchKey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
 
                 connection = (HttpURLConnection) url.openConnection();
                 input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -116,6 +89,6 @@ public class SearchIntentService extends IntentService {
                 connection.disconnect();
             }
         }
-        return response.toString();
+        return response.toString();   //returns the response to the
     }
 }
