@@ -1,8 +1,10 @@
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#ff00ddff">
 
         <LinearLayout
@@ -62,9 +64,47 @@
             android:id="@+id/distance_tv"
             android:hint="@string/distance_tv" />
 
-        <ListView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/search_fragment_list" />
+            android:layout_height="match_parent">
+
+            <ListView
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/search_fragment_list" />
+
+            <com.skyfishjy.library.RippleBackground
+                android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:id="@+id/content"
+               app:rb_color="#0099CC"
+               app:rb_radius="32dp"
+               app:rb_rippleAmount="8"
+               app:rb_duration="1500"
+               app:rb_scale="8">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/centerImage"
+                    android:src="@drawable/cellular_tower"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    app:srcCompat="@drawable/right_arrow"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/imageView2" />
+            </com.skyfishjy.library.RippleBackground>
+
+        </FrameLayout>
+
     </LinearLayout>
+
 

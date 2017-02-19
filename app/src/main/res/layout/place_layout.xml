@@ -22,20 +22,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/place_name"
-            android:layout_margin="10dp" />
+            android:layout_margin="5dp"
+            android:layout_weight=".33"
+            android:gravity="center" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/place_address"
-            android:layout_margin="10dp" />
+            android:layout_margin="5dp"
+            android:layout_weight=".33"
+            android:gravity="center" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/place_distance"
-            android:layout_margin="10dp" />
+            android:layout_margin="5dp"
+            android:layout_weight=".33"
+            android:gravity="center" />
     </LinearLayout>
 </LinearLayout>

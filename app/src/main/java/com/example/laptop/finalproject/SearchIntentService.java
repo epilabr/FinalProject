@@ -2,6 +2,8 @@ package com.example.laptop.finalproject;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -12,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static java.lang.Double.parseDouble;
+
 /*======this service preforms in it's one thread the search action ===========*/
 
 public class SearchIntentService extends IntentService {
@@ -20,6 +24,9 @@ public class SearchIntentService extends IntentService {
     String ifChecked;   //if the user chose to use proximity search
     String searchRadius;  //how close to user location to search
     String units;      // should we use kilometers or miles
+    String myLocationLat;         //latitude for radius search purposes
+    String myLocationLng;         //longitude for radius search purposes
+
 
     public SearchIntentService() {
         super("SearchIntentService");
@@ -32,6 +39,10 @@ public class SearchIntentService extends IntentService {
             ifChecked = intent.getStringExtra("ifChecked");
             searchRadius = intent.getStringExtra("searchRadius");
             units = intent.getStringExtra("units");
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            myLocationLat = preferences.getString("myLocationLat", "");
+            myLocationLng = preferences.getString("myLocationLng", "");
 
             Intent broadcastMessage0 = new Intent("finalProject.STARTED"); //sends the appropriate broadcast message
             LocalBroadcastManager.getInstance(SearchIntentService.this).sendBroadcast(broadcastMessage0);
@@ -54,7 +65,7 @@ public class SearchIntentService extends IntentService {
         try {
             if (ifChecked.equals("1")) {
                 //search by keywords and search radius that the user chose
-                URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + "lat" + "," + "lng" + "&radius=" + searchRadius + "&name=" + searchKey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
+                URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + myLocationLat + "," + myLocationLng + "&radius=" + searchRadius + "&name=" + searchKey + "&language=iw" + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
 
                 connection = (HttpURLConnection) url.openConnection();
                 input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -64,7 +75,7 @@ public class SearchIntentService extends IntentService {
                 }
             } else {
                 //search by keywords only
-                URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchKey + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
+                URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchKey + "&language=iw" + "&key=AIzaSyDmDuBBI1JVwkKp8VtmyIwzhz4Nujl_Xvo");
 
                 connection = (HttpURLConnection) url.openConnection();
                 input = new BufferedReader(new InputStreamReader(connection.getInputStream()));

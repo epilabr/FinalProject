@@ -3,15 +3,22 @@
     package="com.example.laptop.finalproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +38,26 @@
         <Fragment
             android:name="com.example.laptop.finalproject.MyPreferenceFragment"
             android:label="Preferences" />
+        <Fragment
+            android:name="com.example.laptop.finalproject.MyMapFragment"
+            android:label="MyMapFragment" />
+        <Fragment
+            android:name="com.example.laptop.finalproject.SearchFragment"
+            android:label="SearchFragment" />
 
-        <activity android:name=".AppPreferenceActivity"></activity>
+        <activity android:name=".AppPreferenceActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAaKYQN73SPTtqKl48BvvAipjtf0jtTNN0" />
+
+        <service
+            android:name=".AppLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".MyMapActivity" />
+
     </application>
 
 </manifest>
