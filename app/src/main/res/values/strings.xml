@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+
+    <string name="search_text">What would you like to search?</string>
+
+    <string name="search_button">Find It!</string>
+
+    <string name="distance_tv">To search near places use the seekbar and checkbox</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="show_explanation">הסכמתך נדרשת - אפליקציה זו משתמשת במיקומך על מנת להציג מקומות קרובים אליך</string>
+
+    <string name="not_available">מכיוון שזיהוי מיקום לא פעיל, ניתן לחפש לפי מילת מפתח/שם המקום</string>
+
+    <string name="ok_button">ok</string>
+
+    <string name="delete_favorites">האם אתה בטוח שברצונך למחוק את המועדפים?</string>
+
+    <string name="yes">כן</string>
+
+    <string name="no">לא</string>
+
+    <string name="settings">העדפות</string>
+
+    <string name="delete">מחיקת מועדפים</string>
+
+    <string name="youAreHere">אתה נמצא כאן</string>
+
+    <string name="changeToMiles">החלף יחידת מרחק למיילים</string>
+
+    <string name="changeToKilometers">החלף יחידת מרחק לקילומטרים</string>
+
+    <string name="noInternetConnection">******משתמש יקר******</string>
+
+    <string name="noInternetConnectionRational">לא נמצא חיבור אינטרנט פעיל, אנא אפשר אינטרנט בהגדרות הטלפון או התחבר לאינטרנט</string>
+
+    <string name="distanceFromYou">מרחק ממך:</string>
+
+    <string name="metric">קילומטרים</string>
+
+    <string name="miles">מיילים</string>
+
+</resources>
